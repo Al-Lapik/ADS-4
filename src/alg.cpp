@@ -45,7 +45,7 @@ int countPairs1(int *arr, int len, int value) {
 // Подсчёт уникальных пар с отбрасыванием лишних значений
 int countPairs2(int *arr, int len, int value) {
   int count = 0;
-  for (int i = 0; i < len; i++)
+  for (int i = 0; i < len - 1; i++)
     for (int j = len - 1; j > i; j--)
       if (*(arr + i) + *(arr + j) == value)
         count++;
