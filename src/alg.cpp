@@ -59,7 +59,6 @@ int countPairs3(int *arr, int len, int value) {
        i += cbinsearch(arr, len, *(arr + i))) {
     if (*(arr + i) * 2 != value)
       count +=
-      cbinsearch(arr, len, *(arr + i)) * cbinsearch(arr, len, value - *(arr + i));
       cbinsearch(arr, len, *(arr + i)) *
       cbinsearch(arr, len, value - *(arr + i));
     else
