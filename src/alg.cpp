@@ -1,3 +1,5 @@
+// Copyright 2021 NNTU-CS
+
 // Бинарный поиск количества элементов, равных value, в массиве
 int cbinsearch(int *arr, int size, int value) {
   int low = 0, high = size - 1, count = 0, mid;
@@ -57,7 +59,8 @@ int countPairs3(int *arr, int len, int value) {
        i += cbinsearch(arr, len, *(arr + i))) {
     if (*(arr + i) * 2 != value)
       count +=
-      cbinsearch(arr, len, *(arr + i)) * cbinsearch(arr, len, value - *(arr + i));
+      cbinsearch(arr, len, *(arr + i)) *
+      cbinsearch(arr, len, value - *(arr + i));
     else
       count += countSameElPairs(cbinsearch(arr, len, *(arr + i)));
   }
