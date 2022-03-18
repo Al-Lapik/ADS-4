@@ -1,7 +1,6 @@
 // Copyright 2021 NNTU-CS
 
-// Бинарный поиск количества элементов, равных value, в массиве
-int cbinsearch(int *arr, int size, int value) {
+int cbinsearch(int* arr, int size, int value) {
   int low = 0, high = size - 1, count = 0, mid;
   while (low <= high) {
     mid = (low + high) / 2;
@@ -9,10 +8,10 @@ int cbinsearch(int *arr, int size, int value) {
       count++;
       break;
     } else {
-        if (*(arr + mid) < value)
-          low = mid + 1;
-        else
-          high = mid - 1;
+      if (*(arr + mid) < value)
+        low = mid + 1;
+      else
+        high = mid - 1;
     }
   }
   if (count != 0) {
@@ -24,39 +23,34 @@ int cbinsearch(int *arr, int size, int value) {
   return count;
 }
 
-/* Подсчёт количества пар одинаковых элементов
-при количестве elAmount этих элементов в массиве */
 int countSameElPairs(int elAmount) {
   if (elAmount == 1)
     return 0;
   return countSameElPairs(elAmount - 1) + elAmount - 1;
 }
 
-// Подсчёт уникальных пар перебором
-int countPairs1(int *arr, int len, int value) {
+int countPairs1(int* arr, int len, int value) {
   int count = 0;
   for (int i = 0; i < len - 1; i++)
     for (int j = i + 1; j < len; j++)
-      if (* (arr + i) + *(arr + j) == value)
+      if (*(arr + i) + *(arr + j) == value)
         count++;
   return count;
 }
 
-// Подсчёт уникальных пар с отбрасыванием лишних значений
-int countPairs2(int *arr, int len, int value) {
+int countPairs2(int* arr, int len, int value) {
   int count = 0;
-  for (int i = 0; i < len; i++)
+  for (int i = 0; i < len - 1; i++)
     for (int j = len - 1; j > i; j--)
       if (*(arr + i) + *(arr + j) == value)
         count++;
   return count;
 }
 
-// Подсчёт уникальных пар с помощью бинарного поиска
-int countPairs3(int *arr, int len, int value) {
+int countPairs3(int* arr, int len, int value) {
   int count = 0;
   for (int i = 0; *(arr + i) <= value / 2;
-       i += cbinsearch(arr, len, *(arr + i))) {
+    i += cbinsearch(arr, len, *(arr + i))) {
     if (*(arr + i) * 2 != value)
       count +=
       cbinsearch(arr, len, *(arr + i)) *
