@@ -48,15 +48,19 @@ int countPairs2(int* arr, int len, int value) {
 }
 
 int countPairs3(int* arr, int len, int value) {
-  int count = 0;
-  for (int i = 0; *(arr + i) <= value / 2;
-    i += cbinsearch(arr, len, *(arr + i))) {
-    if (*(arr + i) * 2 != value)
-      count +=
-      cbinsearch(arr, len, *(arr + i)) *
-      cbinsearch(arr, len, value - *(arr + i));
-    else
-      count += countSameElPairs(cbinsearch(arr, len, *(arr + i)));
+  int count = 0, j = len - 1;
+  for (int i = 0; i <= j; i++) {
+    int secondAmount = cbinsearch(arr, len, *(arr + j));
+    bool isNextSame = *(arr + i) == *(arr + i + 1);
+    if (*(arr + i) + *(arr + j) == value) {
+      if (*(arr + i) == *(arr + j)) {
+        count += countSameElPairs(j - i + 1);
+        break;
+      }
+      count += secondAmount;
+    }
+    if (!isNextSame && *(arr + i + 1) + *(arr + j) != value)
+      j -= secondAmount;
   }
   return count;
 }
