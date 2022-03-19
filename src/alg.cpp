@@ -49,6 +49,8 @@ int countPairs2(int* arr, int len, int value) {
 
 int countPairs3(int* arr, int len, int value) {
   int count = 0, j = len - 1;
+  while (*(arr + j) > value)
+    j--;
   for (int i = 0; i <= j; i++) {
     int secondAmount = cbinsearch(arr, len, *(arr + j));
     bool isNextSame = *(arr + i) == *(arr + i + 1);
